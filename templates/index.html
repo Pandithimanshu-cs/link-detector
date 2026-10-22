@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Link Detector</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top,#0b0f19,#05070d);
+            color:#e2e8f0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .box{
+            width:600px;
+            padding:40px;
+            border-radius:16px;
+            background:#0f172a;
+            border:1px solid #1e293b;
+            box-shadow:0 0 60px rgba(0,255,200,0.08);
+            text-align:center;
+        }
+
+        h1{
+            margin-bottom:10px;
+            color:#38bdf8;
+            letter-spacing:1px;
+        }
+
+        p{
+            color:#94a3b8;
+            margin-bottom:30px;
+        }
+
+        input{
+            width:90%;
+            padding:14px;
+            border-radius:8px;
+            border:1px solid #334155;
+            background:#0b1220;
+            color:white;
+            font-size:15px;
+            outline:none;
+        }
+
+        input:focus{
+            border:1px solid #38bdf8;
+            box-shadow:0 0 10px #38bdf8;
+        }
+
+        button{
+            margin-top:20px;
+            padding:12px 28px;
+            border:none;
+            border-radius:8px;
+            background:#0ea5e9;
+            color:white;
+            font-size:15px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            transform:scale(1.06);
+            background:#0284c7;
+        }
+
+        .features{
+            margin-top:30px;
+            text-align:left;
+            font-size:14px;
+            color:#cbd5e1;
+        }
+
+        .features li{
+            margin:8px 0;
+        }
+
+        .glow{
+            color:#22d3ee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+    <h1>🛡️ Fraud Link Detector</h1>
+    <p>Enter any suspicious URL and get instant <span class="glow">fraud analysis report</span></p>
+
+    <form action="/" method="POST">
+
+        <input type="text" name="url" placeholder="https://example.com" required>
+        <br>
+        <button type="submit">🔍 Scan Link</button>
+    </form>
+
+    <div class="features">
+        <ul>
+            <li>✔ Detect phishing & malicious domains</li>
+            <li>✔ IP address & domain details</li>
+            <li>✔ Risk score with visual report</li>
+            <li>✔ Downloadable PDF report</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

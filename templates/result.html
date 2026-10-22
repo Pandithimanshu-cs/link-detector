@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Analysis Report</title>
+    <style>
+        .riskbar{
+    height:28px;
+    width:100%;
+    background:#1e293b;
+    border-radius:50px;
+    overflow:hidden;
+    border:1px solid #334155;
+}
+
+.fill{
+    height:100%;
+    border-radius:50px;
+    width:0;
+    animation: loadBar 2s ease forwards;
+}
+
+/* Width classes */
+.w0{width:0%} .w10{width:10%} .w20{width:20%} .w30{width:30%}
+.w40{width:40%} .w50{width:50%} .w60{width:60%}
+.w70{width:70%} .w80{width:80%} .w90{width:90%} .w100{width:100%}
+
+/* Colors */
+.green{background:#22c55e;}
+.yellow{background:#eab308;}
+.red{background:#ef4444;}
+
+/* Animation */
+@keyframes loadBar{
+    from{ width:0; }
+}
+
+        body{
+            margin:0;
+            font-family: 'Segoe UI', sans-serif;
+            background:#0b0f19;
+            color:#e2e8f0;
+        }
+        .container{
+            width:80%;
+            margin:40px auto;
+            background:#0f172a;
+            border-radius:14px;
+            padding:35px;
+            border:1px solid #1e293b;
+        }
+        h1{ text-align:center; color:#38bdf8; }
+
+        .section{
+            margin-top:25px;
+            padding:20px;
+            border-radius:10px;
+            background:#0b1220;
+            border:1px solid #1e293b;
+        }
+
+        .riskbar{
+            height:28px;
+            width:100%;
+            background:#1e293b;
+            border-radius:50px;
+            margin-top:12px;
+            overflow:hidden;
+        }
+
+        .fill{
+            height:100%;
+            border-radius:50px;
+        }
+
+        .btn{
+            padding:10px 20px;
+            background:#0ea5e9;
+            color:white;
+            text-decoration:none;
+            border-radius:6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🛡️ Fraud Analysis Report</h1>
+
+    <p><b>URL:</b> {{ url }}</p>
+    <p><b>Status:</b> {{ status }}</p>
+    <p><b>IP Address:</b> {{ ip }}</p>
+    <p><b>Risk Score:</b> {{ score }} / 100</p>
+
+    {% set bucket = (score // 10) * 10 %}
+{% if bucket > 100 %}{% set bucket = 100 %}{% endif %}
+
+{% set colorClass = "green" %}
+{% if score > 30 and score <= 60 %}
+    {% set colorClass = "yellow" %}
+{% elif score > 60 %}
+    {% set colorClass = "red" %}
+{% endif %}
+
+    <div class="riskbar">
+    <div class="fill w{{ bucket }} {{ colorClass }}"></div>
+</div>
+
+    <div class="section">
+        <h3>⚠ Reasons Detected</h3>
+        <ul>
+            {% for reason in reasons %}
+                <li>{{ reason }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>🌍 Domain Information</h3>
+        <ul>
+            <li><b>Registrar:</b> {{ details.registrar }}</li>
+            <li><b>Creation Date:</b> {{ details.creation_date }}</li>
+            <li><b>Organization:</b> {{ details.org }}</li>
+            <li><b>Country:</b> {{ details.country }}</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <button onclick="window.print()">Download Report as PDF</button>
+        <br><br>
+        <a href="/" class="btn">Scan Another Link</a>
+    </div>
+</div>
+
+</body>
+</html>
